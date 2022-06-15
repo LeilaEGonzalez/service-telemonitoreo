@@ -1,5 +1,9 @@
 import axios from 'axios';
 
-export const baseInstance = axios.create({
-  baseURL: 'https://dev.telemonitoreopalcare.com/api/'
+export const monitoringPlanRouterInstance = axios.create({
+  baseURL: 'http://localhost:3009'
+});
+
+export const monitoringRouterInstance = axios.create({
+  baseURL: 'http://localhost:3008'
 });
