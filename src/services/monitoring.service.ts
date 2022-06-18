@@ -1,4 +1,5 @@
 import Tracking from '../entities/Tracking';
+import MonitoringDevice from '../entities/MonitoringDevice';
 import { monitoringRouterInstance } from './axios';
 
 const getPatientTrackingById = async (
@@ -19,9 +20,19 @@ const getPlanMonitoringPlanIdsByPatientId = async (
   return plansId;
 };
 
+const getPatientDevices = async (
+  patientID: string
+): Promise<MonitoringDevice[]> => {
+  const { data: deviceId } = await monitoringRouterInstance.get(
+    'monitoring/monitoring-devices/patient/' + patientID
+  );
+  return deviceId;
+};
+
 export const monitoringService = {
   getPatientTrackingById,
-  getPlanMonitoringPlanIdsByPatientId
+  getPlanMonitoringPlanIdsByPatientId,
+  getPatientDevices
 };
 
 // Usuario: gf@acuidado.com

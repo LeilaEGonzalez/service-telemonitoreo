@@ -7,3 +7,7 @@ export const monitoringPlanRouterInstance = axios.create({
 export const monitoringRouterInstance = axios.create({
   baseURL: 'http://localhost:3008'
 });
+
+export const devicesRouterInstance = axios.create({
+  baseURL: 'http://localhost:3005'
+});
