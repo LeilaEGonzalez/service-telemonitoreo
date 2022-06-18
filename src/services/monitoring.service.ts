@@ -1,5 +1,4 @@
 import Tracking from '../entities/Tracking';
-import MonitoringDevice from '../entities/MonitoringDevice';
 import { monitoringRouterInstance } from './axios';
 
 const getPatientTrackingById = async (
@@ -20,19 +19,19 @@ const getPlanMonitoringPlanIdsByPatientId = async (
   return plansId;
 };
 
-const getPatientDevices = async (
+const getDevicesIdByPatientID = async (
   patientID: string
-): Promise<MonitoringDevice[]> => {
-  const { data: deviceId } = await monitoringRouterInstance.get(
-    'monitoring/monitoring-devices/patient/' + patientID
+): Promise<string[]> => {
+  const { data: devicesId } = await monitoringRouterInstance.get(
+    '/monitoring-devices/deviceIdByPatientID/' + patientID
   );
-  return deviceId;
+  return devicesId;
 };
 
 export const monitoringService = {
   getPatientTrackingById,
   getPlanMonitoringPlanIdsByPatientId,
-  getPatientDevices
+  getDevicesIdByPatientID
 };
 
 // Usuario: gf@acuidado.com
@@ -40,3 +39,4 @@ export const monitoringService = {
 // 9187c7c0-a84c-4409-8872-371f97e2da47 patient
 // 58e1e451-2cad-48a7-8a53-7ffb3fa53ef7 doctor
 // ba1d4709-7ebf-46c5-98e1-4c4b2c728e68 planid
+// imgDevices/1811b42f-5315-4a5b-b555-affe55294938/chud514-1.jpeg link img
