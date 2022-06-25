@@ -1,9 +1,9 @@
 import User from '../entities/User';
 
-import { monitoringRouterInstance } from './axios';
+import { authInstance } from './axios';
 
 const getUsers = async (): Promise<User[]> => {
-  const { data: users } = await monitoringRouterInstance.get('auth/users');
+  const { data: users } = await authInstance.get('/users');
   return users;
 };
 
