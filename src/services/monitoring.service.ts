@@ -9,11 +9,21 @@ const getPatientTrackingById = async (
   );
   return trackings;
 };
+
 const getPatientsTrackings = async (tracking: string): Promise<Tracking[]> => {
   const { data: trackings } = await monitoringRouterInstance.get(
     'tracking/' + tracking
   );
   return trackings;
+};
+
+const getPatientsIDsByDoctorID = async (
+  doctorID: string
+): Promise<string[]> => {
+  const { data: patientsId } = await monitoringRouterInstance.get(
+    'tracking/patientIDsByProffesionalID/' + doctorID
+  );
+  return patientsId;
 };
 
 const getPlanMonitoringPlanIdsByPatientId = async (
@@ -38,5 +48,6 @@ export const monitoringService = {
   getPatientTrackingById,
   getPatientsTrackings,
   getPlanMonitoringPlanIdsByPatientId,
-  getDevicesIdByPatientID
+  getDevicesIdByPatientID,
+  getPatientsIDsByDoctorID
 };

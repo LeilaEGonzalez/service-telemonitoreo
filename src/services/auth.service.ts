@@ -7,6 +7,14 @@ const getUsers = async (): Promise<User[]> => {
   return users;
 };
 
+const getUserByEmail = async (email: string): Promise<User | null> => {
+  const { data: user } = await authInstance.get(
+    `/users/pagination/?email=${email}`
+  );
+  return user;
+};
+
 export const authService = {
-  getUsers
+  getUsers,
+  getUserByEmail
 };

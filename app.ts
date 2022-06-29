@@ -5,7 +5,7 @@ import cors from 'cors';
 import monitoringRouter from './src/router/monitoring.router';
 import triageRouter from './src/router/triage.router';
 import monitoringDevices from './src/router/devices.router';
-import getPatientsByDoctorsEmail from './src/router/doctor.email.router';
+import patients from './src/router/patients';
 
 require('axios');
 
@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/monitoring', monitoringRouter);
 app.use('/triage', triageRouter);
 app.use('/monitoring-device', monitoringDevices);
-app.use('/doctor-email', getPatientsByDoctorsEmail);
+app.use('/patient', patients);
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
