@@ -8,10 +8,10 @@ const getUsers = async (): Promise<User[]> => {
 };
 
 const getUserByEmail = async (email: string): Promise<User | null> => {
-  const { data: user } = await authInstance.get(
-    `/users/pagination/?email=${email}`
+  const {data: { rows:users }} = await authInstance.get(
+    `/users/paginated?email=${email}`
   );
-  return user;
+  return users[0];
 };
 
 export const authService = {

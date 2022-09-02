@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /app.ts
+    destination: /usr/share/nginx/html/
+hooks:
+  BeforeInstall:
+    - location: /remove.sh
+      timeout: 300
+      runas: root

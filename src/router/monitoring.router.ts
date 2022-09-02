@@ -22,7 +22,7 @@ monitoringRouter.get('/:patientID', async (req, res) => {
 
     const trackingWithProfessionalName = trackings.map((track: Tracking) => ({
       ...track,
-      professionalName: getUserName(track.proffesionalId)
+      professionalName: track.proffesionalId !== '0' ? getUserName(track.proffesionalId) : getUserName(patientID)
     }));
 
     res.send(trackingWithProfessionalName);

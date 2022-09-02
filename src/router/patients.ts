@@ -9,12 +9,14 @@ patients.get('/getByDoctorEmail/:doctorEmail', async (req, res) => {
   const doctorEmail = req.params.doctorEmail;
   try {
     const user = await authService.getUserByEmail(doctorEmail);
-    if (user) {
+    if(user){
       const patientIds = await monitoringService.getPatientsIDsByDoctorID(
         user.id
       );
       const patients = await patientService.getPatientsByIDs(patientIds);
       res.status(200).json(patients);
+    } else {
+      throw new Error('User not found');
     }
   } catch (error) {
     console.log(error);
