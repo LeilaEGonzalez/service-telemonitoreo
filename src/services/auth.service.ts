@@ -14,7 +14,19 @@ const getUserByEmail = async (email: string): Promise<User | null> => {
   return users[0];
 };
 
+const existUserEmail = async (email:string): Promise<boolean> => {
+  const { data } = await authInstance.post(`/users/exist-email`, { email });
+  return data;
+}
+
+const updateUserEmail = async (id:string, newEmail:string):Promise<void> => {
+  const { data } = await authInstance.put(`/users/${id}/change-email`, { newEmail });
+  return data;
+}
+
 export const authService = {
   getUsers,
-  getUserByEmail
+  getUserByEmail,
+  existUserEmail,
+  updateUserEmail
 };

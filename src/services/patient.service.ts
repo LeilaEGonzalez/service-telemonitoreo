@@ -9,4 +9,19 @@ const getPatientsByIDs = async (patientIds: string[]): Promise<Patient[]> => {
   return plansId;
 };
 
-export const patientService = { getPatientsByIDs };
+const getPatientByID = async (id:string): Promise<Patient> => {
+  const { data:patient } = await patientInstance.get(`/patients/${id}`);
+  return patient;
+}
+
+const existPatientEmail = async (mainMail:string): Promise<boolean> => {
+  const { data } = await patientInstance.post(`/patients/exist-email`, { mainMail });
+  return data;
+}
+
+const updatePatientEmail = async (id:string, mainMail:string):Promise<void> => {
+  const { data } = await patientInstance.put(`/patients/${id}/update-email`, { mainMail });
+  return data;
+}
+
+export const patientService = { getPatientsByIDs, getPatientByID, existPatientEmail, updatePatientEmail };

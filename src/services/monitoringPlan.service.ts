@@ -19,7 +19,32 @@ const getTriagesById = async (triageIds: string[]): Promise<Triage[]> => {
   return triage;
 };
 
+const getMeasurementsByPlanId = async (planId:string) => {
+  const { data: measurements } = await monitoringPlanRouterInstance.get(
+    `/monitoringPlanMeasurement/${planId}/measurements`,
+  );
+  return measurements;
+}
+
+const updatePlan = async (plan:any) => {
+  const { data } = await monitoringPlanRouterInstance
+    .put(`/monitoring-plans`, plan);
+  return data;
+}
+
+const updateAssignedMeasurement = async (data:any) => {
+  const response = await monitoringPlanRouterInstance
+    .put(
+      `/monitoringPlanMeasurement/${data.id}/measurement/`,
+      { ...data }
+    );
+  return response.data;
+};
+
 export const monitoringPlanService = {
   getTriageIdsByPlanIds,
-  getTriagesById
+  getTriagesById,
+  getMeasurementsByPlanId,
+  updatePlan,
+  updateAssignedMeasurement
 };
